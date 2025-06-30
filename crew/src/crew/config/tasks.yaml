@@ -1,0 +1,28 @@
+find_schools_task:
+    description: >
+      Search for schools in {location} that offer:
+      - Grade: {grade}
+      - Curriculum: {curriculum}
+      - Location: {location}
+      
+      If location is unknown or user says use my current location, use the get_current_location tool to determine the user's location first.
+      IMPORTANT: Use the search tool sparingly - only 2-3 targeted searches maximum.
+      Find school names, addresses, and basic details efficiently with minimal searches.
+    expected_output: List of 5-10 schools with name, address, grade, curriculum,fees
+    agent: school_finder
+
+analyze_schools_task:
+    description: >
+      For each school found, research and provide:
+      - Detailed location info
+      - Curriculum confirmation
+      - Remarks (fees, facilities, reputation, pros/cons)
+      
+      IMPORTANT: Use the search tool sparingly - maximum 2-3 additional searches for detailed information.
+      Focus on comprehensive analysis with minimal tool usage.
+    expected_output: >
+      Final json of lists of schools with columns:
+      [schoolName,Grade,Curriculum,Location,City,Fees,Remarks(2-3 lines)]
+    agent: school_analyzer
+    context:
+      - find_schools_task
