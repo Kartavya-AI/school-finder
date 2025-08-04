@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from typing import Optional
 import uvicorn
-from school_crew import schoolcrew
+from src.crew.school_crew import schoolcrew
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -153,4 +153,5 @@ async def get_supported_grades():
             "11th Grade",
             "12th Grade"
         ]
+
     }
