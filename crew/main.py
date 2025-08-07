@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import Optional
 import uvicorn
@@ -9,6 +10,15 @@ app = FastAPI(
     title="School Crew API",
     description="API for finding schools based on location, grade, and curriculum",
     version="1.0.0"
+)
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
 )
 
 # Pydantic models for request/response
@@ -153,5 +163,7 @@ async def get_supported_grades():
             "11th Grade",
             "12th Grade"
         ]
-
     }
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
