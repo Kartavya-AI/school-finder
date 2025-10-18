@@ -3,3 +3,4 @@ crewai[tools]>=0.134.0
 streamlit>=1.46.1
 pysqlite3-binary==0.5.4
 gunicorn
+fastapi
